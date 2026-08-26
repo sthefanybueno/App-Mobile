@@ -13,7 +13,7 @@ export class Observation {
     }
 
     private validate(): void {
-        if (this.photo.length === 0) {
+        if (!this.photo || !this.photo.includes('://')) {
             throw new Error('Foto inválida');
         }
     }
