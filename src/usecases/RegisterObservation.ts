@@ -1,4 +1,4 @@
-import * as Crypto from "crypto";
+import * as Crypto from "expo-crypto";
 import { Observation } from "../domain/entities/Observation";
 import { ObservationRepository } from "../domain/repositories/ObservationRepository";
 import { Coordinates } from "../domain/value-objects/Coordinates";

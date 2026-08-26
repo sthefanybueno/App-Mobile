@@ -15,13 +15,12 @@ export default function DrawerLayout() {
         }}
       />
       <Drawer.Screen
-        name='(tabs)'
+        name='hellopage'
         options={{
-          drawerLabel: 'Painel',
-          title: 'Painel'
+          drawerLabel: 'Hello',
+          title: 'Hello'
         }}
       />
     </Drawer>
   )
-  
 }
