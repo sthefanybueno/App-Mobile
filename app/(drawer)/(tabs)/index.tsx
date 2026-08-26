@@ -85,7 +85,8 @@ export default function Camera() {
 
   function viewCamera(){
     return (
-      <CameraView style={styles.camera} facing={facing} ref={cameraRef}>
+      <>
+        <CameraView style={styles.camera} facing={facing} ref={cameraRef} />
         <View style={styles.buttonFlip}>
           <TouchableOpacity style={styles.button} onPress={toggleCameraFacing}>
             <Text style={styles.text}>Virar Câmera</Text>
@@ -96,7 +97,7 @@ export default function Camera() {
             <Text style={styles.text}>Capturar</Text>
           </TouchableOpacity>
         </View>
-      </CameraView>
+      </>
     )
   }
 

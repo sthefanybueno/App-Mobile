@@ -22,6 +22,6 @@ export class InMemoryObservationRepository implements ObservationRepository {
         return this.observations.find(obs => obs.id === id) || null;
     }
     async findAll(): Promise<Observation[]> {
-        return this.observations;
+        return [...this.observations];
     }
 }
