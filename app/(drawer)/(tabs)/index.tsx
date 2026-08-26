@@ -41,12 +41,13 @@ export default function Camera() {
   async function savePhoto() {
     /* */
 
-    container.registerObservation.execute({
+    await container.registerObservation.execute({
       photo: String(uri),
       latitude: Number(location?.coords.latitude),
       longitude: Number(location?.coords.longitude),
     })
     setUri(null);
+    Alert.alert("Sucesso", "Foto salva com sucesso!");
   }
 
   function toggleCameraFacing() {
@@ -86,18 +87,24 @@ export default function Camera() {
     return (
       <CameraView style={styles.camera} facing={facing} ref={cameraRef}>
         <View style={styles.buttonFlip}>
-          <TouchableOpacity style={styles.buttonFlip} onPress={toggleCameraFacing}>
+          <TouchableOpacity style={styles.button} onPress={toggleCameraFacing}>
             <Text style={styles.text}>Virar Câmera</Text>
           </TouchableOpacity>
         </View>
         <View style={styles.buttonCapture}>
-          <TouchableOpacity style={styles.buttonCapture} onPress={takePicture}>
+          <TouchableOpacity style={styles.button} onPress={takePicture}>
             <Text style={styles.text}>Capturar</Text>
           </TouchableOpacity>
         </View>
       </CameraView>
     )
   }
+
+  return (
+    <View style={styles.camera}>
+      {uri ? mostrarFoto() : viewCamera()}
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({
