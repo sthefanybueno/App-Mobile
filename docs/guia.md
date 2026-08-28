@@ -773,3 +773,15 @@ Pense que cada ação no aplicativo é uma viagem bem estruturada:
 5. **O Banco salva:** Se a Entidade estiver ok, o Caso de Uso aciona o Banco de Dados (Repositório da pasta `src/infra/`) que guarda a informação. 
 
 A arquitetura existe exatamente para isso: um lado (Telas) é visual, bobo e mutável, o outro lado (Domínio e UseCases) é estrito, sério e protegido contra bugs.
+
+---
+
+## Outros
+
+Aqui estão alguns comandos úteis para o desenvolvimento:
+
+1. **Rodar os testes (Jest):** `npx jest`
+2. **Limpar o cache dos testes:** `npx jest --clearCache`
+3. **Instalar dependências com conflito de versões:** `npm install --legacy-peer-deps`
+4. **Iniciar o projeto (Expo):** `npx expo start`
+5. **Iniciar o projeto limpando o cache (útil para resolver erros misteriosos):** `npx expo start -c`
