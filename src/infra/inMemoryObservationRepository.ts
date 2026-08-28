@@ -22,6 +22,8 @@ export class InMemoryObservationRepository implements ObservationRepository {
         return this.observations.find(obs => obs.id === id) || null;
     }
     async findAll(): Promise<Observation[]> {
+        // Retorna uma CÓPIA do array ([...this.observations]) em vez da referência original.
+        // Isso evita bugs no React onde a tela não atualiza por achar que o array é o mesmo.
         return [...this.observations];
     }
 }

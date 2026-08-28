@@ -8,6 +8,7 @@ export default function Maps() {
 
   useEffect(() => {
     async function getCurrentLocation(){
+      // Pede permissão de localização "foreground" (enquanto o app estiver aberto).
       let { status } = await Location.requestForegroundPermissionsAsync();
       if (status !== 'granted') {
         Alert.alert("Permissão negada", "Precisamos de acesso à sua localização para salvar a observação.");
@@ -30,10 +31,11 @@ export default function Maps() {
 
   return (
     <View style={styles.container}>
+      {/* MapView desenha o mapa da Apple ou do Google na tela. */}
       <MapView 
         style={styles.map} 
-        showsUserLocation={true} 
-        showsMyLocationButton={true}
+        showsUserLocation={true}  // Mostra o pino azul onde o usuário está.
+        showsMyLocationButton={true} // Botão para voltar a câmera para o usuário.
         initialRegion={{
           latitude: location.coords.latitude,
           longitude: location.coords.longitude,

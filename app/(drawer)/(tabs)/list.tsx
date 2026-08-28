@@ -8,8 +8,12 @@ export default function List() {
   const [list, setList] = useState<Observation[]>([]);
   const [loading, setLoading] = useState(true);
 
+  // useFocusEffect é um Hook do Expo Router que roda toda vez que esta tela "ganha foco" (o usuário clica na aba).
+  // É diferente do useEffect, que rodaria apenas uma vez na vida. 
+  // Isso garante que se o usuário tirar uma foto nova, quando ele voltar para a aba Lista, ela estará atualizada.
   useFocusEffect(
     useCallback(() => {
+      // 'active' previne vazamento de memória. Se a busca demorar e o usuário trocar de tela, ignoramos o resultado.
       let active = true;
       setLoading(true);
       container.listObservations.execute().then((res) => { //then é a mesma coisa de usar async/await
@@ -24,6 +28,8 @@ export default function List() {
     }, [])
   )
 
+    // FlatList usa esta função para saber como desenhar cada linha da lista. 
+    // É muito mais eficiente que desenhar tudo de uma vez usando .map()
     const renderItem = ({ item }: { item: Observation }) => {
         return (
             <View style={styles.card}>

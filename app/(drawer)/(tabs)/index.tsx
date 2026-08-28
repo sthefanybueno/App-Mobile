@@ -8,9 +8,13 @@ export default function Camera() {
   const [location, setLocation] = useState<Location.LocationObject | null>(null);
   const [facing, setFacing] = useState<CameraType>('back');
   const [permission, requestPermission] = useCameraPermissions();
+  // useRef: Cria uma referência persistente que não recria a cada renderização.
+  // Usamos isso para nos "conectar" à instância real da Câmera na tela e poder disparar funções dela (ex: tirar foto).
   const cameraRef = useRef<CameraView>(null);
   const [uri, setUri] = useState<string | null>(null);
 
+  // useEffect com array vazio []: Este código roda apenas UMA vez, exatamente quando a tela é carregada pela primeira vez.
+  // Ideal para checar coisas pesadas na inicialização, como permissões de GPS.
   useEffect(()=>{
     async function getCurrentLocation() {
       let { status } = await Location.requestForegroundPermissionsAsync();
@@ -25,6 +29,7 @@ export default function Camera() {
     getCurrentLocation();
   },[])
   
+  // Se a permissão de câmera ainda estiver carregando (null), retorna uma tela vazia para não quebrar o layout.
   if (!permission) {
     return <View />
   }
@@ -55,7 +60,9 @@ export default function Camera() {
   }
 
   async function takePicture() {
+    // Se a referência da câmera existir (ou seja, se a câmera estiver pronta na tela)...
     if (cameraRef.current) {
+      // Dispara o comando nativo de capturar a foto.
       const foto = await cameraRef.current.takePictureAsync();
       if (foto.uri) {
         setUri(foto.uri);
