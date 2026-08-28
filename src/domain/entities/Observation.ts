@@ -31,5 +31,3 @@ export class Observation {
         this.validate();
     }
 }
-
-}
